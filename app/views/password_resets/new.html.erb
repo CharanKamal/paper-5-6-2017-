@@ -1,0 +1,13 @@
+<h1>Forget Password</h1>
+<p>
+	<%= form_for(:password_reset,url: password_resets_path) do |f| %>
+	<%= f.label :email %>
+	<%= email_field_tag :email %>
+
+	<%= f.label :password %> 
+	<%= password_field_tag :password %>
+
+	<%= submit_tag "Submit" %>
+	<% end %>
+
+</p>

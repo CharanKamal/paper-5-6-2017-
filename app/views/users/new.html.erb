@@ -1,0 +1,51 @@
+<p>Already Have an Account login Here.<%= link_to "LOGIN",new_session_path %></p>
+
+<%= form_for @user do |form| %>
+  <% if @user.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user.errors.count, "error") %> prohibited this user from being saved:</h2>
+
+      <ul>
+      <% @user.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <p>
+    <%= form.label :fname %>
+    <%= form.text_field :fname,:placeholder=> "First Name" %><br><br>
+ 
+
+  
+    <%= form.label :lname %>
+    <%= form.text_field :lname,:placeholder=> "Last Name" %><br><br>
+  
+
+  
+    <%= form.label :uname %>
+    <%= form.text_field :uname,:placeholder=> "Username" %><br><br>
+ 
+
+  
+    <%= form.label :image %>
+    <%= form.file_field :image %><br><br>
+  
+
+  
+    <%= form.label :email %>
+    <%= form.email_field :email,:placeholder=> "email" %><br><br>
+  
+    <%= form.label :password %>
+    <%= form.password_field :password,:placeholder=> "Password" %><br><br>
+
+    
+
+    
+  
+
+  
+    <%= form.submit "Create account" %>
+  
+<% end %>

@@ -1,0 +1,51 @@
+<!-- <h1>Sign Up Seccessfully</h1> -->
+<%#= link_to "LOGIN",new_session_path %>
+
+<% if current_user %>
+LOGGED in as <%= current_user.uname %>
+<h1>All users</h1>
+
+<ul>
+  <% @users.each do |user| %>
+  <% unless user == current_user || user == current_user && user.pending == true %>
+     <li>
+      <%= user.fname %>
+      <%= user.lname %>
+      <%= link_to "Add Friend", friendships_path(friend_id: user), method: :post %>
+
+  </li>
+  <% end %>
+  <% end %>
+</ul>
+  <h4>Your awaiting friend requests:</h4>
+
+<ul>
+    <% current_user.requested_friendships.each do |request| %>
+    <li>
+      <%= request.name %>
+      <%= link_to "Accept",  friendship_path(id: request.id), method: "put" %>
+      <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+<h4>Your sent friend requests:</h4>
+
+<ul>
+    <% current_user.pending_friends.each do |request| %>
+    <li>
+      <%= request.name %>
+      <%= link_to "Accept",  friendship_path(id: request.id), method: "put" %>
+      <%= link_to "Decline", friendship_path(id: request.id), method: :delete %>
+    </li>
+  <% end %>
+</ul>
+
+
+<%= link_to "LOGOUT",session_path(current_user), method: "delete" %>
+
+<% else %>
+<%= link_to "SIGNUP",new_user_path %>
+<%= link_to "LOGIN",new_session_path %>
+
+<% end %>

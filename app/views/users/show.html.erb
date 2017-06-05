@@ -1,0 +1,9 @@
+<% if current_user %>
+LOGGED in as <%= current_user.uname %>
+<%= link_to "LOGOUT",session_path(current_user), method: "delete" %>
+
+<% else %>
+<%= link_to "SIGNUP",new_user_path %>
+<%= link_to "LOGIN",new_session_path %>
+
+<% end %>
